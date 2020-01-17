@@ -1,0 +1,7 @@
+sut:
+  build: .
+  command: /cre/tests/nginx-php-test.sh
+  volumes:
+    - ./tests:/cre/tests
+
+
