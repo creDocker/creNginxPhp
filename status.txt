@@ -6,3 +6,6 @@ Todo:
 * "Init" db
 (Both should be simple copies)
 * Multiple (i.e.) Postgres-DB in same yii/php-Programm (db1,db2) (use split of docker-gen)
+
+* Update 7.4 on <20.04
+https://computingforgeeks.com/how-to-install-php-on-ubuntu/
