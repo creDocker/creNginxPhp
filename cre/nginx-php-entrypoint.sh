@@ -20,4 +20,19 @@ cp -f /cre/db-test.php "/cre/$CRE_PHP_ROOT/db-test.php"
 cp -f /cre/info.php "/cre/$CRE_PHP_ROOT/info.php"
 cp -f /cre/db-config.php /cre/www/db-config.php
 
+# add wasm mime.type
+if grep -Fq "application/wasm" /etc/nginx/mime.types
+then
+  echo "mime type wasm found"
+else
+  echo "mime type wasm missing"
+  sed -n '1,27p' /etc/nginx/mime.types > /cre/mime.types
+  echo '    application/wasm                      wasm;' >> /cre/mime.types
+  sed -n '28,999999p' /etc/nginx/mime.types >> /cre/mime.types
+  cp -f /cre/mime.types /etc/nginx/mime.types
+fi
+
+
+
+
 exec "$@"
