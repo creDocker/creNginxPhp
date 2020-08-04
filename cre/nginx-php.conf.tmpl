@@ -64,7 +64,13 @@ server {
         add_header X-Robots-Tag none;
         add_header X-Download-Options noopen;
         add_header X-Permitted-Cross-Domain-Policies none;
-
+{{ range $proxydomain, $containers := groupByMulti $ "Env.CRE_DOMAIN" "," }}
+  {{ range $container := $containers }}
+    {{ range $containerNetwork := $container.Networks }}
+        set_real_ip_from {{ $containerNetwork.IP }};
+    {{ end }}
+  {{ end }}
+{{ end }}
         include /etc/nginx/conf.d/*.conf.redirect;
 
         location = /robots.txt {
@@ -89,6 +95,7 @@ server {
         location ~ ^(.+?\.php)(/.*)?$ {
             try_files $1 = 404;
             include fastcgi_params;
+#            fastcgi_param REMOTE_ADDR $http_x_real_ip;
             fastcgi_param modHeadersAvailable true;
             fastcgi_param SCRIPT_FILENAME $document_root$1;
             fastcgi_param PATH_INFO $2;
@@ -103,6 +110,7 @@ server {
     location ~ \.php$ {
         fastcgi_pass {{ $phphost }};
         fastcgi_index index.php;
+#        fastcgi_param REMOTE_ADDR $http_x_real_ip;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "error_log=/var/log/nginx/php.errors.log";
         fastcgi_buffers 16 16k;
