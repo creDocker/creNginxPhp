@@ -32,7 +32,4 @@ else
   cp -f /cre/mime.types /etc/nginx/mime.types
 fi
 
-
-
-
 exec "$@"
