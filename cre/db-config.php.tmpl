@@ -33,7 +33,7 @@
 {{ if $CurrentContainer.Env.POSTGRES_DB }}
  {{ range $pgsqlServerPWD, $containers := groupByMulti $ "Env.POSTGRES_ROOT_PWD" "," }}
   {{ range $index, $container := $containers }}
-   {{ $pgSqlPort := or $container.Env.MYSQL_PORT "5432" }}
+   {{ $pgSqlPort := or $container.Env.POSTGRES_PORT "5432" }}
     $port = '{{ $pgSqlPort }}';
    {{ range $containerNetwork := $container.Networks }}
     $host = '{{ $containerNetwork.IP }}';
