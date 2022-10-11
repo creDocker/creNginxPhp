@@ -5,7 +5,7 @@ name: dockerhub:2016.0
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   docker:
@@ -35,7 +35,7 @@ jobs:
       -
         name: Test
         run: |
-          docker run tamboraorg/crenginxphp:check16 /cre/nginxphp-test.sh  
+          docker run tamboraorg/crenginxphp:check16 /cre/nginx-php-test.sh  
       -
         name: Build and push
         id: docker_push
