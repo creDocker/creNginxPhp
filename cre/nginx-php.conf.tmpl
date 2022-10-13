@@ -57,7 +57,12 @@ server {
         rewrite ^.*$ /index.php last;
     }
 
-        add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload;";
+{{ if $CurrentContainer.Env.CRE_DEVELOPMENT }}
+        # only for real certificates - disable for the moment ...
+	# add_header Strict-Transport-Security "max-age=0";
+{{ else }}
+        add_header Strict-Transport-Security "max-age=31536001"; includeSubDomains; preload;";
+{{ end }}
         add_header X-Frame-Options SAMEORIGIN;
         add_header X-Content-Type-Options nosniff;
         add_header X-XSS-Protection "1; mode=block";
