@@ -1,3 +1,4 @@
 db: /cre/gen-template.sh /cre/db-config.php.tmpl /cre/db-config.sh
 phpnginx: /cre/gen-template.sh /cre/nginx-php.conf.tmpl /cre/nginx-php-config.sh
+access: watch -n 86000 /cre/nginx-php-access.sh
 nginx: nginx
