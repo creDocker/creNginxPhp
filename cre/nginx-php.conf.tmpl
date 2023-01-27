@@ -61,7 +61,7 @@ server {
         # only for real certificates - disable for the moment ...
 	# add_header Strict-Transport-Security "max-age=0";
 {{ else }}
-        add_header Strict-Transport-Security "max-age=31536001"; includeSubDomains; preload;";
+        add_header Strict-Transport-Security "max-age=31536001; includeSubDomains; preload;";
 {{ end }}
         add_header X-Frame-Options SAMEORIGIN;
         add_header X-Content-Type-Options nosniff;
