@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM tamboraorg/crenginx:2022.0
+FROM credocker/crenginx:2022.0
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
 ARG BUILD_YEAR=2022

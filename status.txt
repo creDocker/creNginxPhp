@@ -9,3 +9,6 @@ Todo:
 
 * Update 7.4 on <20.04
 https://computingforgeeks.com/how-to-install-php-on-ubuntu/
+
+* goAccess - geoIP
+ * https://dev.maxmind.com/geoip/geolite2-free-geolocation-data?lang=en
